@@ -1,6 +1,6 @@
 requests==2.24.0
 googlesearch-python
-whois==0.9.8
+python-whois==0.7.3
 pandas==1.2.4
 joblib==1.0.1
 xgboost==1.4.2
