@@ -198,6 +198,7 @@ def domainInfo(url):
   try:
     # dmn = urlparse(url).netloc
     domain = whois.whois(url)
+    print(domain)
     if(type(domain.domain_name) is list):
       dmn = domain.domain_name[0]
     elif(type(domain.domain_name) is str):
@@ -207,7 +208,9 @@ def domainInfo(url):
 
     # dmn = domain.domain_name
     
-  except:
+  except Exception as e:
+    print("Error caused here")
+    print(e)
     dmn = None
     foundDNS = 0
   
