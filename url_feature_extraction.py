@@ -194,7 +194,7 @@ def domainInfo(url):
   domain = ""
   dmn = None
   if not( (url.startswith('//') or url.startswith('http://') or url.startswith('https://'))):
-    url = 'https://www.' + url
+    url = 'http://www.' + url
   try:
     # dmn = urlparse(url).netloc
     domain = whois.whois(url)
@@ -258,7 +258,7 @@ def mouseOver(response):
 #so that it can be passed to above functions
 def getResponse(url):
   if (not (url.startswith('http'))):
-    url = 'https://www.' + url
+    url = 'http://www.' + url
   try:
     tableDict['validURL'] = True
     response = requests.get(url, timeout = 5)
