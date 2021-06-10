@@ -1,5 +1,5 @@
 requests==2.24.0
-googlesearch-python==2020.0.2
+googlesearch-python
 whois==0.9.8
 pandas==1.2.4
 joblib==1.0.1
