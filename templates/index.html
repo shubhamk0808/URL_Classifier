@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>URL Checker</title>
+
+        <!-- <link href="bootstrap.css" rel="stylesheet">
+        <link href="font-awesome.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css')}}">        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+        <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+        <script>
+            function performTask() {
+                var string = document.getElementById("url").value;
+                var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);            
+                if(res != null){                
+                    alert("Please wait while the URL is being assessed");
+                }
+                else{
+                    alert("Please enter a valid URL");
+                    return false; //do not submit the form
+                }
+            }
+        </script>
+    </head>
+
+    <body>                      
+        <div class="page-header homepage-header">
+            <div class="bg-gradient">
+                <div class="container">
+                    <h1>Suspicious about the URL?</h1>
+                    <h2>Check it before you visit it.</h2>
+                    <form id = "input_form" onsubmit = "return performTask()" action="{{ url_for('predict')}}" method="post">
+                    <!-- <form id = "input_form" action="{{ url_for('predict')}}" method="post"> -->
+                        <div class="form-group">
+                            <div class="input-group">                                
+                                    <input placeholder="Your Website URL" id="url" name="url" class="form-control" type="text" maxlength="1024" autofocus spellcheck="false">
+                                    <div class="input-group-btn">
+                                        <!-- <input type="Submit" class="btn btn-default" onCLick = "performTask()" value = "Check URL"> -->
+                                        <input type="Submit" class="btn btn-default" value = "Check URL">
+                                    </div>                
+                            </div>                    
+                        </div>
+                    </form>    
+                </div>                
+            </div>
+        </div>
+    </body>
+
+</html>

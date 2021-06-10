@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>URL Analysis Result</title>
+
+
+        <!-- <link href="bootstrap.css" rel="stylesheet">
+        <link href="font-awesome.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css')}}">        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css')}}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">         -->
+        <link rel="stylesheet" type="text/css" href='../static/css/style.css'>        
+        <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <!-- <script type = "text/javascript" src="{{ url_for('static', filename='javascript/pred_result.js')}}" ></script> -->
+        <!-- <script type = "text/javascript" src="../static/javascript/pred_result.js" ></script> -->
+
+
+    </head>
+
+    <body>        
+        <section id="prediction_result">        
+            <div class="prediction_result_head">
+                <h1>URL Analysis Result</h1>    
+            </div>
+            
+            <div class="result_class">                
+                <table id="tbl">                    
+                    <tr>
+                    <td><div style = "font-weight: 600">URL</div></td>
+                    <td id = "url"></td>                      
+                    </tr>
+
+                    <tr>
+                        <td><div style = "font-weight: 600; ">Prediction</div></td>
+                        <td id = "result"><div style = "font-weight: 600; background-color: gold;"> </div></td>                      
+                    </tr>
+
+                    <tr>
+                        <td><div style = "font-weight: 600">Domain Name</div></td>
+                        <td id = "domain"></td>                      
+                    </tr>
+
+                    <tr>
+                        <td><div style = "font-weight: 600">IP address</div></td>
+                        <td id = "ip">Not found</td>                      
+                    </tr>
+
+                    <tr>
+                        <td><div style = "font-weight: 600">Domain Registartion Date</div></td>
+                        <td id = "reg_date">Not found</td>                      
+                    </tr>
+
+                    <tr>
+                        <td><div style = "font-weight: 600">Domain Expiration Date</div></td>
+                        <td id = "exp_date">Not found</td>                      
+                    </tr>
+                </table>                
+            </div>
+
+            <div class="event_more">
+                <a href = "/"> <button class="event_button">Check another URL</button> </a>
+            </div>      
+                    
+        </section>
+
+        <p>Prediction is {{data}}</p>   
+        <!-- comment above p tag later -->
+
+        <!-- <script>            
+            // document.getElementById("url").innerHTML = "google.com"   
+            var someJavaScriptVar = '{{ data["url"] }}';         
+            document.getElementById("url").innerHTML = someJavaScriptVar
+            // if({data['prediction']} == 0){
+            //     document.getElementById("result").innerHTML = "This URL appears to be Suspicious"
+            // }
+            // else if(data['prediction'] == 1){
+            //     document.getElementById("result").innerHTML = "This URL is legitimate"                
+            // }
+            // else if(data['prediction'] == 2){
+            //     document.getElementById("result").innerHTML = "This URL doesn't exist"
+            // }
+        </script> -->
+        <script>            
+            var url = '{{ data["url"] }}';
+            var result = '{{ data["prediction"] }}';
+            var domain = '{{ data["domain"] }}';
+            var ip = '{{ data["ipadd"] }}';
+            var cred_date = '{{ data["creation_date"] }}';
+            var exp_date = '{{ data["expiration_date"] }}';
+                    
+
+            document.getElementById("url").innerHTML = url
+            
+
+            if(result == 0){
+                document.getElementById("result").innerHTML = 'This URL is Suspicious';
+                document.getElementById('result').style.backgroundColor = 'red'
+            }
+            else if(result == 1){
+                document.getElementById("result").innerHTML = 'This URL is legitimate';
+                document.getElementById('result').style.backgroundColor = 'Chartreuse'
+            }
+            else if(result == 2){
+                document.getElementById("result").innerHTML = "This URL doesn't exist";
+                
+            }
+            // document.getElementById('result').style.backgroundColor = 'gold'
+
+            if(ip != 'None'){
+                document.getElementById("ip").innerHTML = ip;
+            }
+            else{
+                document.getElementById("ip").innerHTML = "Not Found"
+            }
+
+            if(domain != 'None'){
+                document.getElementById("domain").innerHTML = domain;
+            }
+            else{
+                document.getElementById("domain").innerHTML = "Not Found"
+            }
+
+            if(cred_date != 'None'){
+                document.getElementById("reg_date").innerHTML = cred_date;
+            }
+            else{
+                document.getElementById("ip").innerHTML = "Not Found"
+            }
+
+            if(exp_date != 'None'){
+                document.getElementById("exp_date").innerHTML = exp_date;
+            }
+            else{
+                document.getElementById("exp_date").innerHTML = "Not Found"
+            }
+        </script>
+        <!-- uncomment this script part -->
+
+    </body>      
+</html>
+
+<!-- document.getElementById("data1").innerHTML = data1;
+document.getElementById("data2").innerHTML = data2; -->
