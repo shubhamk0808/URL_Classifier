@@ -11,6 +11,7 @@ featuresLst = []
 validResponse = True
 lengthURL = 0
 tableDict = dict()
+dmn = None
 """###  Lexical Features """
 
 # Getting the length of URL
@@ -187,6 +188,7 @@ def findAge(domain):
 
 # 16. Finding DNS record of the URL 
 def domainInfo(url):
+  global dmn
   """This function returns all the host-based information in form of tupple containing 0/1"""
   foundDNS = 1
   domain = ""
@@ -277,6 +279,7 @@ In this section, we wil use the above defined features to create a list of featu
 """
 
 def combineFeatures(url):
+  global dmn
   features = []
   # #appending URL
   tableDict['url'] = url
