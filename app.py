@@ -61,4 +61,4 @@ def predict():
         return render_template('result.html')
 
 if __name__=="__main__":
-    app.run(debug=True), port = int(os.environ.get('PORT', 33507), threaded = True)
+    app.run(debug=True, port = int(os.environ.get('PORT', 33507)), threaded = True)
